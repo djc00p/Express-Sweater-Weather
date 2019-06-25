@@ -1,0 +1,15 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: Base Ci
+          command: |
+            echo 'It Works Add More once testing'
+      # - run:
+      #     name: Code Has Arrived
+      #     command: |
+      #       ls -al
+      #       echo '^^^That should look familiar^^^'
