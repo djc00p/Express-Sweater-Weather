@@ -1,0 +1,56 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js test:debug app.spec.js
+
+PATH: 
+  /Users/djc00p/.rbenv/shims:/Users/djc00p/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  10.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/djc00p/turing/4_module/projects/Express-Sweater-Weather/package.json: Unexpected string in JSON at position 191
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:304:30)
+      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "express-sweater-weather",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+       "test:debug": "node --inspect jest --watch --runInBand"
+      "test": "jest "
+    },
+    "dependencies": {
+      "bcrypt": "^3.0.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "morgan": "~1.9.1",
+      "pg": "^7.11.0",
+      "pryjs": "^1.0.3",
+      "sequelize": "^5.8.12",
+      "sequelize-cli": "^5.5.0"
+    },
+    "devDependencies": {
+      "babel-jest": "^24.8.0",
+      "shelljs": "^0.8.3",
+      "supertest": "^4.0.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

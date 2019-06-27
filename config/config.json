@@ -4,20 +4,20 @@
     "password": null,
     "database": "Express-Sweater-Weather_development",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "postgres"
   },
   "test": {
     "username": "djc00p",
     "password": null,
     "database": "Express-Sweater-Weather_test",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "postgres"
   },
   "production": {
     "username": "djc00p",
     "password": null,
     "database": "Express-Sweater-Weather_production",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "postgres"
   }
 }
