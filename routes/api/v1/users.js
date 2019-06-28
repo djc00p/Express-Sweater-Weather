@@ -18,13 +18,10 @@ router.post('/', function(req, res, next) {
     .then(user => {
       res.setHeader('Content-type','application/json');
       res.status(201).send(JSON.stringify({ "api_key": user.apiKey }))
-
     })
     .catch(error => {
       res.setHeader("Content-Type", "application/json");
-      if (res.status(500)) {
-        res.status(401).send(JSON.stringify({ message: error.errors[0].message }));
-      }
+    res.status(501).send(JSON.stringify({ message: error.errors[0].message }));
     });
   }
 });
