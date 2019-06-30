@@ -13,7 +13,6 @@ router.post('/', function(req, res, next) {
 		}
 	})
 	.then(user => {
-		// eval(pry.it)
 		if (bcrypt.compareSync(req.body.password, user[0].password)) {
 			res.setHeader('Content-type','application/json');
 			res.status(200).send(JSON.stringify({ "api_key": user[0].apiKey }))
@@ -23,7 +22,7 @@ router.post('/', function(req, res, next) {
 		res.setHeader("Content-Type", "application/json");
 		res.status(501).send(JSON.stringify({ message: error.errors[0].message }));
 	});
-	;
+});
 
 
 module.exports = router;
