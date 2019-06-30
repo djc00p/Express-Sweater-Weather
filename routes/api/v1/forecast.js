@@ -6,24 +6,39 @@ dotenv.config();
 const { darkSkyApi, googleApi } = require('../../../config/config');
 pry = require('pryjs');
 
-// console.log(`Your DARK_SKY_API is ${darkSkyApi}`);
-// console.log(`Your GOOGLE_API is ${googleApi}`);
 class Forecast {
   constructor(forecast_params){
     this.location = forecast_params.location
   }
 
-  // _darkSkyService() {
-  //     fetch(`https://api.darksky.net/forecast/${darkSkyApi}/${_googleService()},${}`)
-  //   }
+  weather(weather, req) {
+    let output = {
+      'location': req.query.location.toUppercase(),
+      'currently': weather.currently,
+      'hourly': weather.hourly,
+      'daily': weather.daily
+    }
+    return output
+  }
 
   googleService() {
-    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?key=${googleApi}&address=${this.location}`)
-    .then(response => response.json())
+    const fetchPromise = fetch(`https://maps.googleapis.com/maps/api/geocode/json?key=${googleApi}&address=${this.location}`)
+    .then(response => {return response.json();
+    })
     .then(locationInfo => {
-      // eval(pry.it)
-      // use darkSkyApi inside to avoid getting a promise
-        _darkSkyService(locationInfo.results[0].geometry.location)
+      return  locationInfo.results[0].geometry.location
+    })
+    .catch(error => {
+      {error}
+    })
+    return fetchPromise
+  }
+
+  darkskyService(coords) {
+    return fetch(`https://api.darksky.net/forecast/${darkSkyApi}/${coords.lat},${coords.lng}?exclude=minutely,alerts,flags`)
+    .then( response => response.json())
+    .then( weatherInfo => {
+      return weatherInfo
     })
     .catch(error => {
       {error}
@@ -34,23 +49,30 @@ class Forecast {
 router.get('/', function(req, res, next){
   if (req.body.hasOwnProperty('api_key')){
     let forecast = new Forecast(req.query);
-    let location = forecast.googleService();
-    eval(pry.it)
-
-  } else {
+    let geoLocation = forecast.googleService();
+    geoLocation.then(coords => {
+      return forecast.darkskyService(coords);
+    }).then( weather => {
+      res.setHeader('Content-type','application/json');
+      res.status(200).send(JSON.stringify(weather))
+    }).catch(error => {
       res.setHeader("Content-Type", "application/json");
-      res.status(401).send(JSON.stringify({message: 'Unauthorized User'}));
-    }
-  });
+      res.status(500).send(JSON.stringify({ message: error.errors[0].message }));
+    });
+  } else {
+    res.setHeader("Content-Type", "application/json");
+    res.status(401).send(JSON.stringify({message: 'Unauthorized User'}));
+  }
+});
 
 
 module.exports = router;
 
-  // const fetch = require('node-fetch');
-  // const dotenv = require('dotenv');
-  // dotenv.config();
-  // const { darkSkyApi, googleApi } = require('../config/config');
-  // var location = 'denver,co'
+// const fetch = require('node-fetch');
+// const dotenv = require('dotenv');
+// dotenv.config();
+// const { darkSkyApi, googleApi } = require('../config/config');
+// var location = 'denver,co'
 
 
 // module.exports = googleService(location);
