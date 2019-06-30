@@ -65,18 +65,4 @@ router.get('/', function(req, res, next){
   }
 });
 
-
 module.exports = router;
-
-// const fetch = require('node-fetch');
-// const dotenv = require('dotenv');
-// dotenv.config();
-// const { darkSkyApi, googleApi } = require('../config/config');
-// var location = 'denver,co'
-
-
-// module.exports = googleService(location);
-
-// {
-// 	"api_key": "0.lc4ksh9swh"
-// }
