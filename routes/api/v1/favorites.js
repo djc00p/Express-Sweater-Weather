@@ -98,5 +98,23 @@ router.post('/', function(req, res, next) {
   }
 });
 
+router.delete('/', function(req, res, next) {
+  if (req.body.hasOwnProperty('api_key')){
+    FavoriteCities.destroy({
+      where: {
+        location: req.body.location
+      }
+    }).then(favCity => {
+      res.setHeader('Content-Type', 'application/sjon');
+      res.status(204)
+    }).catch(error => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(500).send({ error });
+    });
+  } else {
+    res.setHeader("Content-Type", "application/json");
+    res.status(401).send(JSON.stringify({message: 'Unauthorized User'}));
+  }
+})
 
 module.exports = router;
