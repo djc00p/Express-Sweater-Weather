@@ -19,3 +19,4 @@ DELETE /api/v1/favorites?api_key=USER_API_KEY&location=Denver,%20CO
 
 
 ## Database Schema
+![Schema](/Screen_Shot_2019-07-01_at_7.31.17_AM.png)
