@@ -6,8 +6,8 @@ Deployed on Heroku at: https://express-sweater-weather0312.herokuapp.com/
 This solo project is a remake of a Ruby on Rails project called Sweater Weather:
 https://github.com/djc00p/sweater-weather
 
-##Endpoints
-Example Endpoints
+#### EndpointsExample Endpoints
+
 ```
 GET /api/v1/forecast?location=denver,co
 POST /api/v1/users?email=example@email.com&password=PASSWORD&password_confirmation=PASSWORD
